@@ -1,12 +1,8 @@
 // PostgreSQL connection setup
 const Pool = require('pg').Pool;
-const pool = new Pool({
-  user: 'jairo',
-  host: 'localhost',
-  database: 'jairojobs',
-  password: 'jajnav5@',
-  port: 5432,
-});
+const config = require('./config');
+
+const pool = new Pool(config.database);
 
 // Routes
 const getAllJobs = async (request, response) => {
