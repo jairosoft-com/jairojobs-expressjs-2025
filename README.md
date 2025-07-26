@@ -8,6 +8,7 @@ A Node.js/Express.js microservice for managing job portal functionalities with P
 - Node.js (v14 or higher)
 - PostgreSQL database
 - npm or yarn
+- TypeScript (installed as dev dependency)
 
 ### Installation
 ```bash
@@ -27,8 +28,10 @@ npm run dev
 ```
 
 ### Available Scripts
-- `npm start` - Start production server
-- `npm run dev` - Start development server with hot reload
+- `npm start` - Start production server (from compiled JavaScript)
+- `npm run dev` - Start development server with hot reload (TypeScript)
+- `npm run build` - Compile TypeScript to JavaScript
+- `npm run watch` - Watch TypeScript files and recompile on changes
 
 ## 📋 API Endpoints
 
@@ -48,20 +51,24 @@ npm run dev
 
 ```
 jairojobs-expressjs-2025/
-├── 📄 index.js                 # Main application entry point
-├── 📄 database.js              # Database operations
+├── 📁 src/                     # TypeScript source files
+│   ├── 📄 index.ts            # Main application entry point
+│   ├── 📄 database.ts         # Database operations
+│   ├── 📄 config.ts           # Configuration module
+│   └── 📄 types.ts            # Type definitions
+├── 📁 dist/                    # Compiled JavaScript (gitignored)
+├── 📄 tsconfig.json            # TypeScript configuration
+├── 📄 nodemon.json             # Nodemon configuration
 ├── 📄 package.json             # Project configuration
 ├── 📄 jairojobs.json           # OpenAPI specification
 ├── 📄 jairojobs.yaml           # OpenAPI specification YAML
-├── 📄 TODO-env-config.md       # Environment config plan
-├── 📄 TODO-Error-Handling.md   # Error handling plan
-├── 📄 TODO-Security.md         # Security implementation plan
-└── 📄 TODO-typescript.md       # TypeScript migration plan
+└── 📁 todos/                   # TODO documentation files
 ```
 
 ## 🛠️ Technology Stack
 
 ### Core Technologies
+- **TypeScript** - Type-safe JavaScript superset
 - **Node.js** - JavaScript runtime
 - **Express.js** - Web framework
 - **PostgreSQL** - Database
@@ -69,8 +76,10 @@ jairojobs-expressjs-2025/
 
 ### Development Tools
 - **Nodemon** - Development server with hot reload
+- **ts-node** - TypeScript execution for development
 - **Swagger UI** - API documentation
 - **CORS** - Cross-origin resource sharing
+- **Type Definitions** - Full TypeScript support for all dependencies
 
 ## 📊 Current Status
 
@@ -81,6 +90,7 @@ jairojobs-expressjs-2025/
 - [x] Database layer modularization
 - [x] Swagger UI integration
 - [x] Environment configuration implementation
+- [x] TypeScript conversion
 
 ### 🔄 In Progress
 - [ ] Security best practices implementation
