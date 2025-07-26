@@ -53,7 +53,7 @@ const updateJobById = async (request, response) => {
       [title, description, company, location, salary, parseInt(id, 10)]
     );
     if (result.rows.length === 0) {
-      return res.status(404).json({ error: 'Job not found' });
+      return response.status(404).json({ error: 'Job not found' });
     }
     response.json(result.rows[0]);
   } catch (err) {
