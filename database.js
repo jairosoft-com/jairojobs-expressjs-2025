@@ -1,4 +1,5 @@
 // PostgreSQL connection setup
+const Pool = require('pg').Pool;
 const pool = new Pool({
   user: 'jairo',
   host: 'localhost',
@@ -8,42 +9,42 @@ const pool = new Pool({
 });
 
 // Routes
-app.get('/jobs', async (req, res) => {
+const getAllJobs = async (request, response) => {
   try {
     const result = await pool.query('SELECT * FROM jobs');
-    res.json(result.rows);
+    response.json(result.rows);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    response.status(500).json({ error: err.message });
   }
-});
+};
 
-app.post('/jobs', async (req, res) => {
-  const { title, description, company, location, salary } = req.body;
+const addJob = async (request, response) => {
+  const { title, description, company, location, salary } = request.body;
   try {
     const result = await pool.query(
       'INSERT INTO jobs (title, description, company, location, salary) VALUES ($1, $2, $3, $4, $5) RETURNING *',
       [title, description, company, location, salary]
     );
-    res.status(201).json(result.rows[0]);
+    response.status(201).json(result.rows[0]);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    response.status(500).json({ error: err.message });
   }
-});
+};
 
-app.get('/jobs/:id', async (req, res) => {
-  const { id } = req.params;
+const getJobById = async (request, response) => {
+  const { id } = request.params;
   try {
     const result = await pool.query('SELECT * FROM jobs WHERE id = $1', [parseInt(id, 10)]);
     if (result.rows.length === 0) {
-      return res.status(404).json({ error: 'Job not found' });
+      return response.status(404).json({ error: 'Job not found' });
     }
-    res.json(result.rows[0]);
+    response.json(result.rows[0]);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    response.status(500).json({ error: err.message });
   }
-});
+};
 
-const updateUser = async (request, response) => {
+const updateJobById = async (request, response) => {
   const { id } = request.params;
   const { title, description, company, location, salary } = request.body;
   try {
@@ -60,7 +61,7 @@ const updateUser = async (request, response) => {
   }
 };
 
-const deleteUser = async (request, response) => {
+const deleteJobById = async (request, response) => {
   const { id } = request.params;
   try {
     const result = await pool.query('DELETE FROM jobs WHERE id = $1 RETURNING *', [parseInt(id, 10)]);
@@ -71,4 +72,12 @@ const deleteUser = async (request, response) => {
   } catch (err) {
     response.status(500).json({ error: err.message });
   }
+};
+
+module.exports = {
+  getAllJobs,
+  addJob,
+  getJobById,
+  updateJobById,
+  deleteJobById,
 };
