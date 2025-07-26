@@ -45,7 +45,7 @@ npm run dev
 
 ### API Documentation
 - **Swagger UI**: Available at `/api-docs`
-- **OpenAPI Spec**: `jairojobs.json` and `jairojobs.yaml`
+- **OpenAPI Spec**: `api-docs/jairojobs.json` and `api-docs/jairojobs.yaml`
 
 ## 🏗️ Project Structure
 
@@ -56,13 +56,16 @@ jairojobs-expressjs-2025/
 │   ├── 📄 database.ts         # Database operations
 │   ├── 📄 config.ts           # Configuration module
 │   └── 📄 types.ts            # Type definitions
+├── 📁 api-docs/                # API documentation
+│   ├── 📄 jairojobs.json      # OpenAPI specification
+│   └── 📄 jairojobs.yaml      # OpenAPI specification YAML
 ├── 📁 dist/                    # Compiled JavaScript (gitignored)
+├── 📁 todos-completed/         # Completed TODO files
 ├── 📄 tsconfig.json            # TypeScript configuration
 ├── 📄 nodemon.json             # Nodemon configuration
 ├── 📄 package.json             # Project configuration
-├── 📄 jairojobs.json           # OpenAPI specification
-├── 📄 jairojobs.yaml           # OpenAPI specification YAML
-└── 📁 todos/                   # TODO documentation files
+├── 📄 README.md                # Project documentation
+└── 📄 CLAUDE.md                # AI assistant guidance
 ```
 
 ## 🛠️ Technology Stack

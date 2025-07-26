@@ -20,7 +20,7 @@ app.use(cors());
 
 // Load OpenAPI spec
 const openApiSpec = JSON.parse(
-  fs.readFileSync(path.join(__dirname, '../jairojobs.json'), 'utf8')
+  fs.readFileSync(path.join(__dirname, '../api-docs/jairojobs.json'), 'utf8')
 );
 
 // Swagger UI setup

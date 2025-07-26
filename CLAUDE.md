@@ -52,12 +52,10 @@ This is a TypeScript Node.js/Express.js REST API microservice with the following
 
 ## Critical Implementation Notes
 
-### Security Vulnerabilities (HIGH PRIORITY)
-The database credentials are currently hardcoded in `database.js:4-8`. This is a critical security issue. The TODO-simple-env-config-setup.md file contains the complete plan to implement environment variables using dotenv.
-
 ### Database Connection
 - Uses PostgreSQL with the `pg` library
-- Connection pool is created in `database.js` 
+- Connection pool is created in `src/database.ts`
+- Environment variables are properly configured via `src/config.ts` 
 - All queries use parameterized statements to prevent SQL injection
 - Error handling is implemented at the database operation level
 
