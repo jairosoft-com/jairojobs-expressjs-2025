@@ -1,4 +1,14 @@
 
+function validateEnvVars(requiredVars) {
+  requiredVars.forEach((varName) => {
+    if (!process.env[varName]) {
+      throw new Error(`Environment variable ${varName} is required but not defined.`);
+    }
+  });
+}
+
+// Validate required environment variables
+validateEnvVars(['DB_USER', 'DB_HOST', 'DB_NAME', 'DB_PASSWORD']);
 module.exports = {
   database: {
     user: process.env.DB_USER,
