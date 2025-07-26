@@ -19,7 +19,7 @@ const getAllJobs = async (request, response) => {
 };
 
 const addJob = async (request, response) => {
-  const { title, description, company, location, salary } = req.body;
+  const { title, description, company, location, salary } = request.body;
   try {
     const result = await pool.query(
       'INSERT INTO jobs (title, description, company, location, salary) VALUES ($1, $2, $3, $4, $5) RETURNING *',
